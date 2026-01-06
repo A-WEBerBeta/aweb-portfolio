@@ -1,0 +1,25 @@
+.section {
+  padding: 64px 0 72px;
+}
+
+.inner {
+  max-width: 640px;
+}
+
+.h2 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  letter-spacing: -0.01rem;
+}
+
+.text {
+  margin: 0 0 24px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(0,0,0,0.75);
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+}

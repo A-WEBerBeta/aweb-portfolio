@@ -1,0 +1,131 @@
+.section {
+  padding: 48px 0 18px;
+}
+
+.header {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.h2 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.01rem;
+}
+
+.lead {
+  margin: 0;
+  max-width: 680px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.left {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.railTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: rgba(0,0,0,0.6);
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  padding-left: 10px;
+}
+
+.rail {
+  display: grid;
+  gap: 16px;
+}
+
+.railItem {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 24px;
+  border-radius: 16px;
+}
+
+.railItem:hover {
+  background: rgba(14,154,167,0.08);
+  border-color: rgba(14,154,167,0.16);
+}
+
+.railLogo {
+  height: 52px;
+  width: auto;
+  display: block;
+}
+
+.railLabel {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.75);
+}
+
+.right {
+  display: grid;
+  gap: 16px;
+}
+
+.block {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  padding-left: 30px;
+}
+
+.blockTop {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+
+.h3 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: -0.01rem;
+}
+
+.note {
+  font-size: 16px;
+  color: rgba(0,0,0,0.45);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: rgba(14,154,167,0.04);
+  border: 1px solid rgba(14,154,167,0.14);
+  color: rgba(0,0,0,0.78);
+  font-size: 13px;
+  font-weight: 600;
+}

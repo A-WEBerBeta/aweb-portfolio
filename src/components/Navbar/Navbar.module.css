@@ -1,0 +1,57 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.row {
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 58px;
+  width: auto;
+}
+
+.nav {
+  display: none;
+  gap: 22px;
+  font-size: 16px;
+  color: rgba(0,0,0,0.7);
+}
+
+.nav a:hover {
+  color: rgba(0,0,0,0.95);
+}
+
+.cta {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(14,154,167,0.25);
+  color: var(--tealDark);
+  background: white;
+}
+
+.cta:hover {
+  border-color: rgba(14,154,167,0.45);
+}
+
+@media (min-width: 640px) {
+  .nav {
+    display: flex;
+  }
+}
