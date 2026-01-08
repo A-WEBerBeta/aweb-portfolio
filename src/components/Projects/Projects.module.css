@@ -1,39 +1,108 @@
 .section {
-  padding: 56px 0 18px;
+  padding: 64px 0;
 }
 
 .header {
   display: grid;
   gap: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 52px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 22px;
 }
 
 .h2 {
   margin: 0;
-  font-size: 22px;
-  letter-spacing: -0.01rem;
+  font-size: clamp(24px, 2.2vw, 32px);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.rule {
+  flex: 1;
+  height: 3px;
+
+  background: linear-gradient(
+    to right,
+    var(--teal) 0%,
+    rgba(14, 154, 167, 0.35) 40%,
+    rgba(14, 154, 167, 0.12) 70%,
+    transparent 100%
+  );
+
+  border-radius: 999px;
+  transform: translateY(4px);
 }
 
 .lead {
   margin: 0;
   max-width: 680px;
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .grid {
   display: grid;
-  gap: 16px;
+  gap: 18px;
 }
 
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+}
+
+/* ----------------- Card ----------------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow);
+  padding: 22px;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: border-color 180ms ease, transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.card:hover {
+  border-color: rgba(14, 154, 167, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.1);
+}
+
+/* body qui prend l’espace variable */
+.cardBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardBtn {
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 12px;
+}
+
+/* image */
 .imageWrapper {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 16px;
   overflow: hidden;
-  background:  #f1f3f4;
+  background: #f1f3f4;
   margin-bottom: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .imageWrapper img {
@@ -42,30 +111,42 @@
   object-fit: cover;
   object-position: top center;
   display: block;
+
+  transform: scale(1);
+  transition: transform 260ms ease;
 }
 
-.card {
-  background: white;
-  border: 1px solid rgba(0,0,0,0.05);
-  border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow);
-  padding: 22px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+.imageWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.06), transparent 55%);
+  opacity: 0;
+  transition: opacity 260ms ease;
+  pointer-events: none;
 }
 
-.card:hover {
-  border-color: rgba(14,154,167,0.25);
-  transform: translateY(-1px);
+.card:hover .imageWrapper::after {
+  opacity: 1;
 }
 
+.card:hover .imageWrapper img {
+  transform: scale(1.02);
+}
+
+/* top layout : titre + détails sur la même ligne */
 .cardTop {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title details"
+    "subtitle subtitle";
+  gap: 8px 14px;
+  align-items: center;
 }
 
 .titleRow {
+  grid-area: title;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -76,92 +157,62 @@
   margin: 0;
   font-size: 16px;
   letter-spacing: -0.01rem;
+  color: var(--text);
 }
-
 
 .subtitle {
-  margin: 8px 0 0;
+  grid-area: subtitle;
+  margin: 0;
   font-size: 13px;
-  color: rgba(0,0,0,0.6);
+  color: var(--muted);
 }
 
-
-.description {
-  margin: 14px 0 0;
-  color: rgba(0,0,0,0.72);
-  font-size: 14px;
-  line-height: 1.7;
-  max-width: 760px;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.tag {
-  font-size: 12px;
-  color: rgba(0,0,0,0.7);
-  background: rgba(14,154,167,0.06);
-  border: 1px solid rgba(14,154,167,0.14);
-  padding: 7px 10px;
-  border-radius: 14px;
-}
-
-.actions {
-  margin-top: 18px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
+/* bouton détails */
 .detailsBtn {
+  grid-area: details;
+  justify-self: end;
+
   background: none;
   border: none;
-  padding: 3px 10px;
-  margin: 0;
+  padding: 6px 8px;
+
   font-weight: 600;
   font-size: 13px;
-  color: rgba(0,0,0,0.6);
+  line-height: 1;
+  color: var(--muted);
   cursor: pointer;
+
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+
+  transition: color 180ms ease;
 }
 
-
 .detailsBtn:hover {
-  color: rgba(0,0,0,0.85);
+  color: var(--text);
 }
 
 .detailsBtn svg {
-  transform: translateY(1px) rotate(0deg);
+  display: block;
+  margin-top: 3px;
   transition: transform 180ms ease;
 }
 
 .open svg {
-  transform: translateY(1px) rotate(180deg);
+  transform: rotate(180deg);
 }
 
-.tagsMore {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
+/* détails animés */
 .details {
   display: grid;
-  grid-template-rows: 0fr;      
+  grid-template-rows: 0fr;
   transition: grid-template-rows 320ms ease;
   margin-top: 12px;
 }
 
 .detailsOpen {
-  grid-template-rows: 1fr;      
+  grid-template-rows: 1fr;
 }
 
 .detailsInner {
@@ -176,9 +227,58 @@
   transform: translateY(0);
 }
 
-@media (min-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
+.description {
+  margin: 14px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 76ch;
+}
+
+.tagsMore {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+/* footer */
+.cardFooter {
+  margin-top: 16px;
+  display: grid;
+  gap: 18px; /* espace entre tags et boutons */
+}
+
+/* tags fixes */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 0;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--tealDark);
+  background: transparent;
+  border: 1px solid rgba(14, 154, 167, 0.28);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imageWrapper img,
+  .imageWrapper::after {
+    transition: none;
+  }
+  .card:hover .imageWrapper img {
+    transform: none;
   }
 }

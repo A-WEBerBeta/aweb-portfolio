@@ -1,35 +1,63 @@
 .section {
-  min-height: 520px;
+  min-height: calc(100svh - var(--nav-h), 84px);
   display: flex;
   align-items: center;
-  padding: 56px 0 40px;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: clamp(48px, 7vh, 96px) 0 clamp(32px, 5vh, 72px);
+  position: relative;
+  overflow: hidden;
+}
+
+.section:target {
+  scroll-margin-top: var(--nav-h, 84px);
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 140%;
+
+  background: radial-gradient(
+    circle at 70% 30%,
+    rgba(14, 154, 167, 0.08),
+    transparent 60%
+  );
+
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* contenu */
 .inner {
   max-width: 660px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
 }
 
 .h1 {
   margin: 0;
   font-size: clamp(36px, 4vw, 56px);
-  letter-spacing: -0.12rem;
-  line-height: 1.08;
-  max-width: 18ch;
+  letter-spacing: -0.06rem;
+  line-height: 1.06;
+  max-width: 20ch;
 }
 
 .name {
-  margin: 12px 0 0;
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 0.04rem;
+  margin: 14px 0 0;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: 0.12rem;
   text-transform: uppercase;
-  color: rgba(0,0,0,0.55);
+  color: var(--text);
 }
 
 .muted {
-  color: rgba(0,0,0,0.65);
+  color: var(--muted);
 }
 
 .react {
@@ -38,10 +66,10 @@
 
 .p {
   margin: 18px 0 0;
-  max-width: 56ch;
+  max-width: 58ch;
   color: var(--muted);
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.75;
 }
 
 .actions {
@@ -51,37 +79,51 @@
   flex-wrap: wrap;
 }
 
+.scrollWrap {
+  margin-top: 64px;
+  width: 100%;
+  text-align: center;
+}
 
 .scrollHint {
-  margin-top: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
 
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(0,0,0,0.45);
-  text-decoration: none;
+  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.18);
 
-  transition: color 180ms ease;
+  animation: floatDown 2.4s ease-in-out infinite;
+  transition: border-color 200ms ease, color 200ms ease, transform 200ms ease;
 }
 
 .scrollHint:hover {
-  color: rgba(0,0,0,0.75);
-}
-
-.scrollHint svg {
-  animation: floatDown 1.6s ease-in-out infinite;
+  color: var(--text-muted);
+  border-color: var(--text-faint);
+  transform: translateY(3px);
 }
 
 @keyframes floatDown {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(6px);
+    transform: translateY(4px);
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .scrollHint {
+    animation: none;
+  }
+}
 
-
+@media (max-width: 640px) {
+  .section::after {
+    display: none;
+  }
+}

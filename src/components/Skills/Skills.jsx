@@ -24,7 +24,11 @@ export default function Skills() {
     <section id="skills" className={styles.section}>
       <Container>
         <div className={styles.header}>
-          <h2 className={styles.h2}>Compétences</h2>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.h2}>Compétences</h2>
+            <span className={styles.rule} aria-hidden></span>
+          </div>
+
           <p className={styles.lead}>
             Stack orientée React, avec un focus sur l'accessibilité et la
             qualité d'interface.
@@ -53,60 +57,59 @@ export default function Skills() {
 
           {/* Colonne droite */}
           <div className={styles.right}>
-            <article className={styles.block}>
-              <div className={styles.blockTop}>
-                <h3 className={styles.h3}>Qualité</h3>
-                <span className={styles.note}>
-                  Ce que j'applique au quotidien
-                </span>
-              </div>
+            <div className={styles.rightCard}>
+              <article className={styles.block}>
+                <div className={styles.blockTop}>
+                  <h3 className={styles.h3}>Qualité</h3>
+                  {/* <p className={styles.note}>Ce que j'applique au quotidien</p> */}
+                </div>
 
-              <div className={styles.chips}>
-                <span className={styles.chip}>Architecture composants</span>
-                <span className={styles.chip}>Composants réutilisables</span>
-                <span className={styles.chip}>Accessibilité (WCAG)</span>
-                <span className={styles.chip}>Navigation clavier & focus</span>
-                <span className={styles.chip}>Sémantique HTML</span>
-                <span className={styles.chip}>Refacto & lisibilité</span>
-                <span className={styles.chip}>Performance UI</span>
-              </div>
-            </article>
+                <ul className={styles.items}>
+                  <li className={styles.item}>
+                    Composants réutilisables & design system
+                  </li>
+                  <li className={styles.item}>
+                    Accessibilité (WCAG), clavier & focus
+                  </li>
+                  <li className={styles.item}>Sémantique HTML</li>
+                  <li className={styles.item}>Refacto & lisibilité</li>
+                  <li className={styles.item}>Performance UI</li>
+                </ul>
+              </article>
 
-            <article className={styles.block}>
-              <div className={styles.blockTop}>
-                <h3 className={styles.h3}>Outils & workflow</h3>
-                <span className={styles.note}>Pour livrer proprement</span>
-              </div>
+              <article className={styles.block}>
+                <div className={styles.blockTop}>
+                  <h3 className={styles.h3}>Outils & workflow</h3>
+                  {/* <p className={styles.note}>Pour livrer proprement</p> */}
+                </div>
 
-              <div className={styles.chips}>
-                <span className={styles.chip}>Git / GitHub</span>
-                <span className={styles.chip}>Intégration Figma</span>
-                <span className={styles.chip}>Sass (SCSS)</span>
-                <span className={styles.chip}>API REST</span>
-                <span className={styles.chip}>Fetch / Async</span>
-                <span className={styles.chip}>JSON</span>
-                <span className={styles.chip}>Chrome DevTools</span>
-              </div>
-            </article>
+                <ul className={styles.items}>
+                  <li className={styles.item}>Git / GitHub</li>
+                  <li className={styles.item}>Intégration Figma</li>
+                  <li className={styles.item}>Sass (SCSS)</li>
+                  <li className={styles.item}>API REST + fetch/async</li>
+                  <li className={styles.item}>Chrome DevTools</li>
+                </ul>
+              </article>
 
-            <article className={styles.block}>
-              <div className={styles.blockTop}>
-                <h3 className={styles.h3}>Approche & méthode</h3>
-                <span className={styles.note}>
-                  15 ans en optique : précision, écoute et exigence du détail
-                </span>
-              </div>
+              <article className={styles.block}>
+                <div className={styles.blockTop}>
+                  <h3 className={styles.h3}>Approche & méthode</h3>
+                  {/* <p className={styles.note}>
+                    15 ans en optique : précision, écoute et exigence du détail
+                  </p> */}
+                </div>
 
-              <div className={styles.chips}>
-                <span className={styles.chip}>Autonomie</span>
-                <span className={styles.chip}>Souci du détail</span>
-                <span className={styles.chip}>Sens utilisateur</span>
-                <span className={styles.chip}>Pédagogie</span>
-                <span className={styles.chip}>Rigueur</span>
-                <span className={styles.chip}>Communication claire</span>
-                <span className={styles.chip}>Priorisation</span>
-              </div>
-            </article>
+                <ul className={styles.items}>
+                  <li className={styles.item}>Rigueur & autonomie</li>
+                  <li className={styles.item}>
+                    Souci du détail, sens utilisateur
+                  </li>
+                  <li className={styles.item}>Communication claire</li>
+                  <li className={styles.item}>Priorisation</li>
+                </ul>
+              </article>
+            </div>
           </div>
         </div>
       </Container>

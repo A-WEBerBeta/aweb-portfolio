@@ -2,30 +2,58 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 14px;
-  border-radius: 16px;
+  gap: 8px;
+
+  padding: 10px 16px;
+  border-radius: 14px;
+
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
+  line-height: 1;
+
   text-decoration: none;
   cursor: pointer;
+
+  border: 1px solid transparent;
+
+  transition: background-color 180ms ease, border-color 180ms ease,
+    color 180ms ease, transform 180ms ease;
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
 }
 
 .primary {
   background: var(--teal);
-  color: white;
+  color: var(--surface);
+  border-color: transparent;
 }
 
 .primary:hover {
   background: var(--tealDark);
+  transform: translateY(-1px);
 }
 
 .secondary {
-  border: 1px solid var(--border);
-  background: white;
-  color: rgba(0,0,0,0.75);
+  background: var(--surface);
+  border-color: var(--border);
+  color: rgba(0, 0, 0, 0.78);
 }
 
 .secondary:hover {
-  border-color: rgba(14,154,167,0.28);
+  border-color: rgba(14, 154, 167, 0.45);
+  color: var(--tealDark);
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+  .primary:hover,
+  .secondary:hover {
+    transform: none;
+  }
 }

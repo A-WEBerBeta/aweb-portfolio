@@ -1,25 +1,57 @@
 .section {
-  padding: 56px 0 24px;
+  padding: 64px 0;
 }
 
-.inner {
-  max-width: 760px;
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 52px;
 }
 
 .h2 {
-  margin: 0 0 18px;
-  font-size: 22px;
-  letter-spacing: -0.01rem;
+  margin: 0;
+  font-size: clamp(24px, 2.2vw, 32px);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
-.text {
+.rule {
+  flex: 1;
+  height: 3px;
+
+  background: linear-gradient(
+    to right,
+    var(--teal) 0%,
+    rgba(14, 154, 167, 0.35) 40%,
+    rgba(14, 154, 167, 0.12) 70%,
+    transparent 100%
+  );
+
+  border-radius: 999px;
+  transform: translateY(4px);
+}
+
+.content {
+  max-width: 720px;
   display: grid;
   gap: 14px;
-  color: rgba(0, 0, 0, 0.75);
-  font-style: 16px;
-  line-height: 1.8;
 }
 
-.text p {
+.content p {
   margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.content strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.signature {
+  margin-top: 8px;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.55);
 }

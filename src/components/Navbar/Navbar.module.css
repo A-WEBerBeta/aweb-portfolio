@@ -2,9 +2,11 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid var(--border);
 }
 
 .row {
@@ -13,6 +15,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .brand {
@@ -27,27 +35,55 @@
 
 .nav {
   display: none;
-  gap: 22px;
+  gap: 24px;
   font-size: 16px;
-  color: rgba(0,0,0,0.7);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.nav a {
+  position: relative;
+  padding: 12px 4px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  color: inherit;
+  transition: color 180ms ease;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(14, 154, 167, 0.6);
+  transform: translateX(-50%);
+  transition: width 180ms ease;
 }
 
 .nav a:hover {
-  color: rgba(0,0,0,0.95);
+  color: rgba(0, 0, 0, 0.95);
+}
+
+.nav a:hover::after {
+  width: 70%;
 }
 
 .cta {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   padding: 10px 14px;
   border-radius: 14px;
-  border: 1px solid rgba(14,154,167,0.25);
+  border: 1px solid rgba(14, 154, 167, 0.25);
   color: var(--tealDark);
-  background: white;
+  background: var(--surface);
 }
 
 .cta:hover {
-  border-color: rgba(14,154,167,0.45);
+  border-color: rgba(14, 154, 167, 0.45);
 }
 
 @media (min-width: 640px) {

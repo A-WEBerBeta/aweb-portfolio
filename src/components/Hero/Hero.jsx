@@ -27,6 +27,8 @@ export default function Hero() {
               Me contacter
             </Button>
           </div>
+        </div>
+        <div className={styles.scrollWrap}>
           <a
             className={styles.scrollHint}
             href="#projects"

@@ -6,21 +6,31 @@ export default function About() {
     <section id="about" className={styles.section}>
       <Container>
         <div className={styles.inner}>
-          <h2 className={styles.h2}>À propos</h2>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.h2}>À propos</h2>
+            <span className={styles.rule} aria-hidden></span>
+          </div>
 
-          <div className={styles.text}>
+          <div className={styles.content}>
             <p>
-              Après 15 années d'expérience en tant qu'opticienne, je travaille
-              aujourd'hui comme développeuse frontend.
+              Après{" "}
+              <strong>15 années d'expérience en tant qu'opticienne</strong>, je
+              travaille aujourd'hui comme développeuse frontend.
             </p>
             <p>
-              Ce parcours m'a transmis rigueur, précision et sens du détail, que
+              Ce parcours m'a transmis{" "}
+              <strong>rigueur, précision et sens du détail</strong>, que
               j'applique désormais dans la conception d'interfaces web.
             </p>
             <p>
-              Je développe principalement avec React, en portant une attention
-              particulière à l'accessibilité, à la lisibilité et à la
+              Je développe principalement avec <strong>React</strong>, en
+              portant une attention particulière à{" "}
+              <strong>l'accessibilité</strong>, à la lisibilité et à la
               maintenabilité du code.
+            </p>
+
+            <p className={styles.signature}>
+              Interfaces sobres, accessibles et pensées pour durer.
             </p>
           </div>
         </div>

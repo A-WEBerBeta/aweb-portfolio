@@ -15,6 +15,8 @@ function ProjectCard({ project }) {
   const visibleTags = project.tags.slice(0, 3);
   const hiddenTags = project.tags.slice(3);
 
+  const hasDetails = project.description || hiddenTags.length > 0;
+
   return (
     <article className={styles.card}>
       {project.image && (
@@ -26,68 +28,82 @@ function ProjectCard({ project }) {
           />
         </div>
       )}
-      <div className={styles.cardTop}>
-        <div>
+
+      <div className={styles.cardBody}>
+        <div className={styles.cardTop}>
           <div className={styles.titleRow}>
             <h3 className={styles.title}>{project.title}</h3>
             {project.featured && (
               <span className={styles.badge}>{project.badge}</span>
             )}
           </div>
+
+          {hasDetails && (
+            <button
+              className={`${styles.detailsBtn} ${open ? styles.open : ""}`}
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              type="button"
+            >
+              Détails
+              <ChevronDown size={16} aria-hidden="true" />
+            </button>
+          )}
+
           <p className={styles.subtitle}>{project.subtitle}</p>
         </div>
 
-        {(project.description || hiddenTags.length > 0) && (
-          <button
-            className={`${styles.detailsBtn} ${open ? styles.open : ""}`}
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            type="button"
+        {hasDetails && (
+          <div
+            className={`${styles.details} ${open ? styles.detailsOpen : ""}`}
           >
-            Détails
-            <ChevronDown size={16} aria-hidden="true" />
-          </button>
-        )}
-      </div>
+            <div className={styles.detailsInner}>
+              {project.description && (
+                <p className={styles.description}>{project.description}</p>
+              )}
 
-      {(project.description || hiddenTags.length > 0) && (
-        <div className={`${styles.details} ${open ? styles.detailsOpen : ""}`}>
-          <div className={styles.detailsInner}>
-            <p className={styles.description}>{project.description}</p>
-
-            {hiddenTags.length > 0 && (
-              <div className={styles.tagsMore}>
-                {hiddenTags.map((t) => (
-                  <Tag key={t}>{t}</Tag>
-                ))}
-              </div>
-            )}
+              {hiddenTags.length > 0 && (
+                <div className={styles.tagsMore}>
+                  {hiddenTags.map((t) => (
+                    <Tag key={t}>{t}</Tag>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-
-      <div className={styles.tags}>
-        {visibleTags.map((t) => (
-          <Tag key={t}>{t}</Tag>
-        ))}
+        )}
       </div>
 
-      <div className={styles.actions}>
-        {project.links.demo && (
-          <Button href={project.links.demo} target="_blank" rel="noreferrer">
-            Voir le projet
-          </Button>
-        )}
+      <div className={styles.cardFooter}>
+        <div className={styles.tags}>
+          {visibleTags.map((t) => (
+            <Tag key={t}>{t}</Tag>
+          ))}
+        </div>
 
-        <Button
-          href={project.links.github}
-          target="_blank"
-          rel="noreferrer"
-          variant="secondary"
-        >
-          <Github size={16} strokeWidth={2} />
-          Code GitHub
-        </Button>
+        <div className={styles.actions}>
+          {project.links.demo && (
+            <Button
+              href={project.links.demo}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.cardBtn}
+            >
+              Voir le projet
+            </Button>
+          )}
+
+          <Button
+            href={project.links.github}
+            target="_blank"
+            rel="noreferrer"
+            variant="secondary"
+            className={styles.cardBtn}
+          >
+            <Github size={16} strokeWidth={2} />
+            Code GitHub
+          </Button>
+        </div>
       </div>
     </article>
   );
@@ -98,7 +114,10 @@ export default function Projects() {
     <section id="projects" className={styles.section}>
       <Container>
         <div className={styles.header}>
-          <h2 className={styles.h2}>Projets</h2>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.h2}>Projets</h2>
+            <span className={styles.rule} aria-hidden></span>
+          </div>
           <p className={styles.lead}>
             Une sélection courte et soignée, orientée React et qualité
             d'interface.
