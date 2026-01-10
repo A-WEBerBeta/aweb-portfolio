@@ -1,53 +1,72 @@
 .section {
   position: relative;
-  padding: 110px 0 120px;
+  padding: 88px 0 108px;
   overflow: hidden;
+}
+
+/* =========================
+   WRAPPER + BACKGROUND
+   ========================= */
+
+.shell {
+  position: relative;
 }
 
 .bg {
   position: absolute;
-  inset: 0;
+  inset: -120px 0 -120px;
   pointer-events: none;
+  z-index: 0;
 
   background: radial-gradient(
     1100px 520px at 50% 110%,
     rgba(14, 154, 167, 0.22),
     transparent 60%
   );
-  /* radial-gradient(
-      900px 420px at 50% -10%,
-      rgba(0, 0, 0, 0.06),
-      transparent 60%
-    ); */
-  /* linear-gradient(180deg, #ffffff 0%, #fbfcfc 55%, #f6fbfb 100%); */
 }
 
 .bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.14;
+  opacity: 0.12;
   background-image: radial-gradient(rgba(0, 0, 0, 0.09) 1px, transparent 1px);
   background-size: 3px 3px;
   mix-blend-mode: soft-light;
 }
 
+/* =========================
+   CONTENT
+   ========================= */
+
 .inner {
   position: relative;
+  z-index: 1;
+
   max-width: 920px;
   margin: 0 auto;
   text-align: center;
+
   display: grid;
   justify-items: center;
+
+  /* ===== Scroll-driven animation vars ===== */
+  --p: 0; /* valeur par défaut avant JS */
 }
 
+/* --- titre / lead --- */
 .title {
   margin: 0;
-  font-size: 46px;
-  line-height: 54px;
-  letter-spacing: -1.1px;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
   color: var(--text);
   font-weight: 700;
+
+  /* animation: arrive tôt */
+  opacity: var(--p);
+  transform: translateY(calc((1 - var(--p)) * 14px));
+  will-change: opacity, transform;
 }
 
 .dot1 {
@@ -56,23 +75,41 @@
 
 .lead {
   margin: 14px 0 0;
-  font-size: 20px;
-  line-height: 32px;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.6;
   color: var(--muted);
   max-width: 860px;
+
+  /* animation: un poil après le titre */
+  opacity: clamp(0, (var(--p) - 0.12) / 0.88, 1);
+  transform: translateY(
+    calc((1 - clamp(0, (var(--p) - 0.12) / 0.88, 1)) * 12px)
+  );
+  will-change: opacity, transform;
 }
+
+/* =========================
+   CTA PRINCIPAL
+   ========================= */
 
 .ctaRow {
   margin-top: 30px;
   display: grid;
   justify-items: center;
+
+  /* animation: après lead */
+  opacity: clamp(0, (var(--p) - 0.24) / 0.76, 1);
+  transform: translateY(
+    calc((1 - clamp(0, (var(--p) - 0.24) / 0.76, 1)) * 10px)
+  );
+  will-change: opacity, transform;
 }
 
 .bigCta {
   padding: 18px 36px;
   border-radius: 999px;
 
-  font-size: 24px;
+  font-size: clamp(18px, 2.4vw, 24px);
   font-weight: 600;
   letter-spacing: 0.4px;
 
@@ -101,51 +138,47 @@
   transform: translateY(-3px);
 }
 
-/* chips LinkedIn / GitHub */
+/* =========================
+   CHIPS
+   ========================= */
+
 .chipsRow {
   margin-top: 14px;
   display: flex;
   gap: 14px;
   justify-content: center;
   flex-wrap: wrap;
+
+  /* animation: après CTA */
+  opacity: clamp(0, (var(--p) - 0.34) / 0.66, 1);
+  transform: translateY(
+    calc((1 - clamp(0, (var(--p) - 0.34) / 0.66, 1)) * 10px)
+  );
+  will-change: opacity, transform;
 }
 
-.chipBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+/* =========================
+   SEPARATOR
+   ========================= */
 
-  padding: 12px 18px;
-  border-radius: 999px;
-
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
-
-  font-size: 16px;
-  font-weight: 700;
-  color: rgba(0, 0, 0, 0.72);
-  text-decoration: none;
-
-  transition: transform 160ms ease, border-color 160ms ease,
-    background 160ms ease;
-}
-
-.chipBtn:hover {
-  transform: translateY(-1px);
-  border-color: rgba(14, 154, 167, 0.22);
-  background: rgba(255, 255, 255, 0.82);
-}
-
-/* séparateur */
 .hr {
   margin-top: 34px;
-  width: 820px;
+  width: min(820px, 100%);
   height: 1px;
   background: var(--border);
+
+  /* animation: après chips */
+  opacity: clamp(0, (var(--p) - 0.46) / 0.54, 1);
+  transform: translateY(
+    calc((1 - clamp(0, (var(--p) - 0.46) / 0.54, 1)) * 8px)
+  );
+  will-change: opacity, transform;
 }
 
-/* meta mail/localisation  */
+/* =========================
+   META
+   ========================= */
+
 .meta {
   margin-top: 18px;
   display: flex;
@@ -154,8 +187,15 @@
   gap: 18px;
   flex-wrap: wrap;
 
-  font-size: 18px;
+  font-size: clamp(14px, 1.6vw, 18px);
   color: var(--muted);
+
+  /* animation: en dernier */
+  opacity: clamp(0, (var(--p) - 0.54) / 0.46, 1);
+  transform: translateY(
+    calc((1 - clamp(0, (var(--p) - 0.54) / 0.46, 1)) * 8px)
+  );
+  will-change: opacity, transform;
 }
 
 .metaLink {
@@ -174,7 +214,6 @@
 
 .metaLabel {
   display: block;
-  transform: translateY(-2px);
 }
 
 .metaItem {
@@ -197,4 +236,79 @@
 
 .iconTeal {
   color: var(--teal);
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1280px) {
+  .bg {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 72px 0 84px;
+  }
+
+  .ctaRow {
+    margin-top: 24px;
+  }
+
+  .hr {
+    margin-top: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .bigCta {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 22px;
+  }
+
+  .chipsRow > * {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .metaSep {
+    display: none;
+  }
+
+  .lead br {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .section {
+    padding: 64px 0 72px;
+  }
+
+  .bg::after {
+    opacity: 0.08;
+  }
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .inner {
+    --p: 1 !important;
+  }
+
+  .title,
+  .lead,
+  .ctaRow,
+  .chipsRow,
+  .hr,
+  .meta {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

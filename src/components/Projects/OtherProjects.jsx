@@ -3,7 +3,7 @@ import { useState } from "react";
 import { projects } from "../../data/projects";
 import Button from "../Button/Button";
 import Container from "../Container/Container";
-import styles from "./Projects.module.css";
+import styles from "./OtherProjects.module.css";
 
 function Tag({ children }) {
   return <span className={styles.tag}>{children}</span>;
@@ -115,12 +115,12 @@ export default function Projects() {
       <Container>
         <div className={styles.header}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.h2}>Projets</h2>
+            <h2 className={styles.h2}>Autres Projets</h2>
             <span className={styles.rule} aria-hidden></span>
           </div>
           <p className={styles.lead}>
-            Une sélection courte et soignée, orientée React et qualité
-            d'interface.
+            Des projets réalisés dans le cadre de ma formation et pour pratiquer
+            React et la qualité d’interface.
           </p>
         </div>
 

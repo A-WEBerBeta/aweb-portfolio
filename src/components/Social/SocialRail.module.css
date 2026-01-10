@@ -1,0 +1,99 @@
+/* === RAIL SOCIAL === */
+
+.rail {
+  position: fixed;
+  left: clamp(8px, 2.4vw, 62px);
+  bottom: 26px;
+  z-index: 60;
+
+  display: grid;
+  gap: 10px;
+  align-items: center;
+  justify-items: center;
+
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.railHidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+/* === ICON BUTTONS === */
+
+.iconBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(0, 0, 0, 0.72);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
+
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: transform 160ms ease, background 160ms ease,
+    border-color 160ms ease, color 160ms ease;
+}
+
+.iconBtn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(14, 154, 167, 0.25);
+  color: var(--tealDark);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.iconBtn:active {
+  transform: translateY(0);
+}
+
+.iconBtn:focus-visible {
+  outline: 3px solid rgba(14, 154, 167, 0.28);
+  outline-offset: 2px;
+}
+
+/* === VERTICAL LINE === */
+
+.line {
+  width: 2px;
+  height: 140px;
+  margin-top: 8px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 154, 167, 0.7) 0%,
+    rgba(14, 154, 167, 0.7) 80%,
+    rgba(14, 154, 167, 0.3) 92%,
+    rgba(14, 154, 167, 0) 100%
+  );
+}
+
+/* === RESPONSIVE === */
+
+@media (max-width: 900px) {
+  .rail {
+    display: none;
+  }
+}
+
+/* === DARK THEME === */
+
+:global(html[data-theme="dark"]) .iconBtn {
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(20, 24, 28, 0.72);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+:global(html[data-theme="dark"]) .iconBtn:hover {
+  color: var(--teal);
+  background: rgba(20, 24, 28, 0.9);
+  border-color: rgba(14, 154, 167, 0.28);
+}

@@ -1,3 +1,4 @@
+import useScrollProgressReveal from "../../hooks/useScrollProgressReveal";
 import Button from "../Button/Button";
 import Container from "../Container/Container";
 import styles from "./Contact.module.css";
@@ -5,6 +6,8 @@ import styles from "./Contact.module.css";
 import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 
 export default function Contact() {
+  const { ref } = useScrollProgressReveal({ preset: "soft" });
+
   return (
     <section className={styles.section} id="contact">
       <Container>
@@ -12,7 +15,7 @@ export default function Contact() {
           {/* Fond déco ? */}
           <div className={styles.bg} aria-hidden="true"></div>
 
-          <div className={styles.inner}>
+          <div className={styles.inner} ref={ref}>
             <h2 className={styles.title}>
               Prêt<span className={styles.dot1}>•</span>e à collaborer ?
             </h2>

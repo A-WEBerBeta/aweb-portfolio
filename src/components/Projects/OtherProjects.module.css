@@ -1,11 +1,11 @@
 .section {
-  padding: 64px 0;
+  padding: 56px 0;
 }
 
 .header {
   display: grid;
   gap: 10px;
-  margin-bottom: 52px;
+  margin-bottom: 48px;
 }
 
 .sectionHeader {

@@ -1,0 +1,266 @@
+.section {
+  padding: 72px 0;
+  background: transparent;
+}
+
+/* ===== Header ===== */
+
+.header {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 68px;
+
+  --p: 0;
+  opacity: var(--p);
+  transform: translateY(calc((1 - var(--p)) * 12px));
+  will-change: opacity, transform;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.h2 {
+  margin: 0;
+  font-size: clamp(24px, 2.2vw, 32px);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.rule {
+  flex: 1;
+  height: 3px;
+
+  background: linear-gradient(
+    to right,
+    var(--teal) 0%,
+    rgba(14, 154, 167, 0.35) 40%,
+    rgba(14, 154, 167, 0.12) 70%,
+    transparent 100%
+  );
+
+  border-radius: 999px;
+  transform: translateY(4px);
+}
+
+/* ===== Layout ===== */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(22px, 4vw, 64px);
+  align-items: center;
+
+  /* valeurs par défaut (avant JS) */
+  --p-left: 0;
+  --p-right: 0;
+  --p-meta: 0;
+}
+
+/* ===== LEFT : visuel ===== */
+
+.left {
+  position: relative;
+
+  opacity: var(--p-left);
+  transform: translateY(calc((1 - var(--p-left)) * 18px));
+  will-change: opacity, transform;
+}
+
+.shot {
+  width: 100%;
+  max-width: 640px;
+  border-radius: 18px;
+
+  background: transparent;
+  border: 0;
+  overflow: visible;
+  box-shadow: none;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  border-radius: 18px;
+  filter: drop-shadow(0 26px 70px rgba(0, 0, 0, 0.18));
+}
+
+/* ===== RIGHT : texte / stack / cta ===== */
+
+.right {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+}
+
+/* kicker + title pilotés par --p-right */
+.kicker,
+.title {
+  opacity: var(--p-right);
+  transform: translateY(calc((1 - var(--p-right)) * 16px));
+  will-change: opacity, transform;
+}
+
+.kicker {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  max-width: 24ch;
+}
+
+/* stack + cta pilotés par --p-meta */
+.stack,
+.cta {
+  opacity: var(--p-meta);
+  transform: translateY(calc((1 - var(--p-meta)) * 14px));
+  will-change: opacity, transform;
+}
+
+.stack {
+  margin-top: 6px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.tech {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  min-width: 90px;
+}
+
+.techIcon {
+  width: 56px;
+  height: 44px;
+  border-radius: 12px;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(0, 0, 0, 0.045);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  color: rgba(0, 0, 0, 0.72);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.05);
+
+  transition: transform 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.techIcon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.tech:hover .techIcon {
+  transform: translateY(-1px);
+  border-color: rgba(14, 154, 167, 0.22);
+  color: var(--tealDark);
+}
+
+.techLabel {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.62);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* CTA */
+.cta {
+  margin-top: 8px;
+  display: inline-block;
+  width: fit-content;
+
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  font-size: 16px;
+
+  color: var(--muted);
+  padding-bottom: 6px;
+
+  border-bottom: 2px solid rgba(14, 154, 167, 0.8);
+  transition: color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.cta:hover {
+  color: var(--text);
+  border-bottom-color: rgba(14, 154, 167, 1);
+  transform: translateY(-1px);
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 1100px) {
+  .shot {
+    max-width: 560px;
+  }
+
+  .stack {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shot {
+    max-width: 100%;
+  }
+
+  .title {
+    max-width: 32ch;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 56px 0;
+  }
+
+  .stack {
+    gap: 14px;
+  }
+
+  .tech {
+    min-width: 78px;
+  }
+
+  .techIcon {
+    width: 50px;
+    height: 40px;
+  }
+
+  .cta {
+    margin-inline: auto;
+  }
+}
+
+/* ===== Accessibilité ===== */
+@media (prefers-reduced-motion: reduce) {
+  .left,
+  .kicker,
+  .title,
+  .stack,
+  .cta {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

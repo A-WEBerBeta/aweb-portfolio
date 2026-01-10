@@ -9,16 +9,18 @@ export default function Hero() {
       <Container>
         <div className={styles.inner}>
           <h1 className={styles.h1}>
-            Développeuse Web <br />{" "}
-            <span className={styles.muted}>JavaScript</span> /{" "}
-            <span className={styles.react}>React</span>
+            <span>Aurélie</span> <strong>WEBER</strong>
           </h1>
 
-          <p className={styles.name}>Aurélie Weber</p>
+          <p className={styles.role}>
+            Développeuse Web <span className={styles.muted}>JavaScript</span> /{" "}
+            <span className={styles.react}>React</span>
+          </p>
 
           <p className={styles.p}>
-            Je conçois des interfaces web modernes, lisibles et maintenables,
-            orientées utilisateur.
+            Je développe des interfaces web claires,
+            <br />
+            soignées et centrées sur l'utilisateur.
           </p>
 
           <div className={styles.actions}>
