@@ -229,7 +229,7 @@
 
 .description {
   margin: 14px 0 0;
-  color: var(--text-muted);
+  color: var(--muted);
   font-size: 14px;
   line-height: 1.7;
   max-width: 76ch;
@@ -281,4 +281,55 @@
   .card:hover .imageWrapper img {
     transform: none;
   }
+}
+
+/* =========================
+   DARK THEME
+   ========================= */
+
+:global(html[data-theme="dark"]) .card {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
+}
+
+:global(html[data-theme="dark"]) .card:hover {
+  border-color: rgba(14, 154, 167, 0.35);
+  box-shadow: 0 26px 86px rgba(0, 0, 0, 0.62);
+}
+
+:global(html[data-theme="dark"]) .imageWrapper {
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+}
+
+:global(html[data-theme="dark"]) .imageWrapper::after {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.28),
+    rgba(0, 0, 0, 0) 55%
+  );
+  opacity: 0.18;
+}
+
+:global(html[data-theme="dark"]) .imageWrapper img {
+  filter: contrast(1.03) saturate(1.02);
+}
+
+:global(html[data-theme="dark"]) .subtitle {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+:global(html[data-theme="dark"]) .detailsBtn {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+:global(html[data-theme="dark"]) .detailsBtn:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+:global(html[data-theme="dark"]) .tag {
+  color: rgba(255, 255, 255, 0.84);
+  border-color: rgba(14, 154, 167, 0.35);
+  background: rgba(14, 154, 167, 0.04);
 }

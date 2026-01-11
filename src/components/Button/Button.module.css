@@ -57,3 +57,28 @@
     transform: none;
   }
 }
+
+/* =========================
+   DARK THEME
+   ========================= */
+
+:global(html[data-theme="dark"]) .primary {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+:global(html[data-theme="dark"]) .primary:hover {
+  box-shadow: 0 20px 54px rgba(0, 0, 0, 0.45);
+}
+
+:global(html[data-theme="dark"]) .secondary {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+:global(html[data-theme="dark"]) .secondary:hover {
+  background: rgba(14, 154, 167, 0.12);
+  border-color: rgba(14, 154, 167, 0.45);
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+}

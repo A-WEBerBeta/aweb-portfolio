@@ -60,10 +60,10 @@ export default function useScrollProgressReveal({ preset = "focus" } = {}) {
         return;
       }
 
-      // ===== HEADER: basé sur la position (plus progressif pour un petit bloc) =====
+      // ===== HEADER: basé sur la position =====
       if (preset === "header") {
-        const start = vh * 0.92; // commence quand le header arrive bas dans l’écran
-        const end = vh * 0.55; // finit quand il approche le milieu
+        const start = vh * 0.92;
+        const end = vh * 0.55;
         const raw = (start - rect.top) / (start - end);
         const p = clamp01(raw);
 

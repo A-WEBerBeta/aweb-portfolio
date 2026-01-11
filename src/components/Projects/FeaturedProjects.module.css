@@ -254,6 +254,7 @@
 }
 
 /* ===== Accessibilité ===== */
+
 @media (prefers-reduced-motion: reduce) {
   .left,
   .kicker,
@@ -263,4 +264,44 @@
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+/* =========================
+   DARK THEME
+   ========================= */
+
+:global(html[data-theme="dark"]) .kicker {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+:global(html[data-theme="dark"]) .techLabel {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+:global(html[data-theme="dark"]) .techIcon {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.82);
+
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+:global(html[data-theme="dark"]) .tech:hover .techIcon {
+  border-color: rgba(14, 154, 167, 0.4);
+  color: rgba(14, 154, 167, 0.95);
+  transform: translateY(-1px);
+}
+
+:global(html[data-theme="dark"]) .cta {
+  color: rgba(255, 255, 255, 0.72);
+  border-bottom-color: rgba(14, 154, 167, 0.75);
+}
+
+:global(html[data-theme="dark"]) .cta:hover {
+  color: rgba(255, 255, 255, 0.92);
+  border-bottom-color: rgba(14, 154, 167, 1);
+}
+
+:global(html[data-theme="dark"]) .shot img {
+  filter: drop-shadow(0 28px 80px rgba(0, 0, 0, 0.62));
 }

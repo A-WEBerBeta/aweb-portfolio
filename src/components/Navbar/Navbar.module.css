@@ -3,11 +3,13 @@
   top: 0;
   z-index: 50;
 
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(10px);
 
   border-bottom: 1px solid var(--border);
 }
+
+/* Layout */
 
 .row {
   height: var(--nav-h);
@@ -33,35 +35,38 @@
   width: auto;
 }
 
+/* Links */
+
 .nav {
   display: none;
-  gap: 24px;
+  gap: 26px;
   font-size: 16px;
-  font-weight: 600;
-  color: var(--text-muted);
+  font-weight: 650;
+  color: var(--muted);
 }
 
 .nav a {
   position: relative;
-  padding: 12px 4px;
+  padding: 10px 4px;
   display: inline-flex;
   align-items: center;
   line-height: 1;
   color: inherit;
-  transition: color 180ms ease;
+  transition: color 180ms ease, opacity 180ms ease;
 }
 
 .nav a::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: 4px;
+  bottom: 2px;
   width: 0;
   height: 2px;
   border-radius: 999px;
-  background: rgba(14, 154, 167, 0.6);
+  background: rgba(14, 154, 167, 0.7);
   transform: translateX(-50%);
-  transition: width 180ms ease;
+  transition: width 180ms ease, opacity 180ms ease;
+  opacity: 0.9;
 }
 
 .nav a:hover {
@@ -69,25 +74,60 @@
 }
 
 .nav a:hover::after {
-  width: 70%;
+  width: 72%;
 }
 
 .cta {
   font-size: 15px;
-  font-weight: 600;
-  padding: 10px 14px;
-  border-radius: 14px;
-  border: 1px solid rgba(14, 154, 167, 0.25);
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(14, 154, 167, 0.35);
   color: var(--tealDark);
   background: var(--surface);
 }
 
 .cta:hover {
-  border-color: rgba(14, 154, 167, 0.45);
+  border-color: rgba(14, 154, 167, 0.55);
 }
 
 @media (min-width: 640px) {
   .nav {
     display: flex;
   }
+}
+
+/* =========================
+   DARK THEME
+   ========================= */
+
+:global(html[data-theme="dark"]) .header {
+  background: rgba(8, 12, 14, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Refaire logo avec aweb en blanc et créer le switch de png sur le dark mode */
+:global(html[data-theme="dark"]) .logo {
+  filter: brightness(2.5) contrast(1.05);
+}
+
+:global(html[data-theme="dark"]) .nav {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+:global(html[data-theme="dark"]) .nav a:hover {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+:global(html[data-theme="dark"]) .nav a::after {
+  background: rgba(14, 154, 167, 0.85);
+}
+
+:global(html[data-theme="dark"]) .cta {
+  color: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(14, 154, 167, 0.35);
+}
+
+:global(html[data-theme="dark"]) .cta:hover {
+  background: rgba(14, 154, 167, 0.12);
 }
