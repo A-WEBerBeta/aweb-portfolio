@@ -1,116 +1,95 @@
 import Container from "../Container/Container";
 import styles from "./Skills.module.css";
 
-import cssIcon from "../../assets/tech/css.svg";
-import figmaIcon from "../../assets/tech/figma.svg";
-import htmlIcon from "../../assets/tech/html.svg";
-import jsIcon from "../../assets/tech/javascript.svg";
-import reactIcon from "../../assets/tech/react.svg";
-import reduxIcon from "../../assets/tech/redux.svg";
-import viteIcon from "../../assets/tech/vite.svg";
+import cssLogo from "../../assets/tech/css.svg";
+import htmlLogo from "../../assets/tech/html.svg";
+import jsLogo from "../../assets/tech/javascript.svg";
+import sassLogo from "../../assets/tech/sass.svg";
 
-const tech = [
-  { name: "React", src: reactIcon },
-  { name: "JavaScript", src: jsIcon },
-  { name: "Redux", src: reduxIcon },
-  { name: "HTML", src: htmlIcon },
-  { name: "CSS", src: cssIcon },
-  { name: "Vite", src: viteIcon },
-  { name: "Figma", src: figmaIcon },
+import reactLogo from "../../assets/tech/react.svg";
+import reduxLogo from "../../assets/tech/redux.svg";
+
+import figmaLogo from "../../assets/tech/figma.svg";
+import githubLogo from "../../assets/tech/github.svg";
+import viteLogo from "../../assets/tech/vite.svg";
+
+const GROUPS = [
+  {
+    label: "Langages & styling",
+    items: [
+      { name: "JavaScript", src: jsLogo, glow: "rgba(247, 223, 30, 0.55)" },
+      { name: "HTML", src: htmlLogo, glow: "rgba(227, 79, 38, 0.55)" },
+      { name: "CSS", src: cssLogo, glow: "rgba(21, 114, 182, 0.55)" },
+      { name: "Sass/SCSS", src: sassLogo, glow: "rgba(204, 102, 153, 0.55)" },
+    ],
+  },
+  {
+    label: "Frameworks & libs",
+    items: [
+      { name: "React", src: reactLogo, glow: "rgba(97, 218, 251, 0.55)" },
+      { name: "Redux", src: reduxLogo, glow: "rgba(118, 74, 188, 0.55)" },
+    ],
+  },
+  {
+    label: "Outils",
+    items: [
+      { name: "Vite", src: viteLogo, glow: "rgba(100, 108, 255, 0.55)" },
+      { name: "Figma", src: figmaLogo, glow: "rgba(242, 115, 30, 0.55)" },
+      {
+        name: "GitHub",
+        src: githubLogo,
+        glow: "rgba(255, 255, 255, 0.35)",
+        invert: true,
+      },
+    ],
+  },
 ];
 
 export default function Skills() {
   return (
     <section id="skills" className={styles.section}>
       <Container>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.h2}>Compétences</h2>
-            <span className={styles.rule} aria-hidden></span>
+            <span className={styles.rule} aria-hidden />
           </div>
 
           <p className={styles.lead}>
-            Stack orientée React, avec un focus sur l'accessibilité et la
-            qualité d'interface.
+            Stack front-end orientée UI, avec un focus accessibilité et qualité
+            d’interface.
           </p>
-        </div>
+        </header>
 
-        <div className={styles.layout}>
-          {/* Colonne gauche */}
-          <div className={styles.left}>
-            <div className={styles.railTitle}>Stack</div>
+        <div className={styles.groups}>
+          {GROUPS.map((group) => (
+            <div key={group.label} className={styles.group}>
+              <p className={styles.groupLabel}>{group.label}</p>
 
-            <div className={styles.rail}>
-              {tech.map((t) => (
-                <div key={t.name} className={styles.railItem}>
-                  <img
-                    className={styles.railLogo}
-                    src={t.src}
-                    alt={t.name}
-                    loading="lazy"
-                  />
-                  <span className={styles.railLabel}>{t.name}</span>
-                </div>
-              ))}
+              <ul className={styles.grid}>
+                {group.items.map((it) => (
+                  <li
+                    key={it.name}
+                    className={`${styles.item} ${
+                      it.name === "GitHub" ? styles.isGithub : ""
+                    }`}
+                    style={{ ["--glow"]: it.glow }}
+                  >
+                    <img
+                      className={`${styles.logo} ${
+                        it.invert ? styles.logoGithub : ""
+                      }`}
+                      src={it.src}
+                      alt={it.name}
+                      loading="lazy"
+                      draggable={false}
+                    />
+                    <span className={styles.name}>{it.name}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-
-          {/* Colonne droite */}
-          <div className={styles.right}>
-            <div className={styles.rightCard}>
-              <article className={styles.block}>
-                <div className={styles.blockTop}>
-                  <h3 className={styles.h3}>Qualité</h3>
-                  {/* <p className={styles.note}>Ce que j'applique au quotidien</p> */}
-                </div>
-
-                <ul className={styles.items}>
-                  <li className={styles.item}>
-                    Composants réutilisables & design system
-                  </li>
-                  <li className={styles.item}>
-                    Accessibilité (WCAG), clavier & focus
-                  </li>
-                  <li className={styles.item}>Sémantique HTML</li>
-                  <li className={styles.item}>Refacto & lisibilité</li>
-                  <li className={styles.item}>Performance UI</li>
-                </ul>
-              </article>
-
-              <article className={styles.block}>
-                <div className={styles.blockTop}>
-                  <h3 className={styles.h3}>Outils & workflow</h3>
-                  {/* <p className={styles.note}>Pour livrer proprement</p> */}
-                </div>
-
-                <ul className={styles.items}>
-                  <li className={styles.item}>Git / GitHub</li>
-                  <li className={styles.item}>Intégration Figma</li>
-                  <li className={styles.item}>Sass (SCSS)</li>
-                  <li className={styles.item}>API REST + fetch/async</li>
-                  <li className={styles.item}>Chrome DevTools</li>
-                </ul>
-              </article>
-
-              <article className={styles.block}>
-                <div className={styles.blockTop}>
-                  <h3 className={styles.h3}>Approche & méthode</h3>
-                  {/* <p className={styles.note}>
-                    15 ans en optique : précision, écoute et exigence du détail
-                  </p> */}
-                </div>
-
-                <ul className={styles.items}>
-                  <li className={styles.item}>Rigueur & autonomie</li>
-                  <li className={styles.item}>
-                    Souci du détail, sens utilisateur
-                  </li>
-                  <li className={styles.item}>Communication claire</li>
-                  <li className={styles.item}>Priorisation</li>
-                </ul>
-              </article>
-            </div>
-          </div>
+          ))}
         </div>
       </Container>
     </section>
