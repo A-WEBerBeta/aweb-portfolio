@@ -1,16 +1,14 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 80;
 
   background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(10px);
-
   border-bottom: 1px solid var(--border);
 }
 
 /* Layout */
-
 .row {
   height: var(--nav-h);
   display: flex;
@@ -19,15 +17,10 @@
   gap: 16px;
 }
 
-.right {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
 .brand {
   display: flex;
   align-items: center;
+  min-width: 44px;
 }
 
 .logo {
@@ -35,10 +28,16 @@
   width: auto;
 }
 
-/* Links */
-
-.nav {
+/* Desktop right */
+.right {
   display: none;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Links */
+.nav {
+  display: flex;
   gap: 26px;
   font-size: 16px;
   font-weight: 650;
@@ -52,7 +51,9 @@
   align-items: center;
   line-height: 1;
   color: inherit;
-  transition: color 180ms ease, opacity 180ms ease;
+  transition:
+    color 180ms ease,
+    opacity 180ms ease;
 }
 
 .nav a::after {
@@ -65,7 +66,9 @@
   border-radius: 999px;
   background: rgba(14, 154, 167, 0.7);
   transform: translateX(-50%);
-  transition: width 180ms ease, opacity 180ms ease;
+  transition:
+    width 180ms ease,
+    opacity 180ms ease;
   opacity: 0.9;
 }
 
@@ -77,6 +80,7 @@
   width: 72%;
 }
 
+/* CTA Desktop */
 .cta {
   font-size: 15px;
   font-weight: 700;
@@ -91,9 +95,263 @@
   border-color: rgba(14, 154, 167, 0.55);
 }
 
-@media (min-width: 640px) {
-  .nav {
+/* =========================
+   Burger (Mobile)
+   ========================= */
+
+.burger {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.78);
+
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.burger:hover {
+  transform: translateY(-1px);
+  border-color: rgba(14, 154, 167, 0.25);
+  background: rgba(14, 154, 167, 0.05);
+}
+
+.burger:active {
+  transform: translateY(0);
+}
+
+.burger:focus-visible {
+  outline: 3px solid rgba(14, 154, 167, 0.28);
+  outline-offset: 2px;
+}
+
+/* =========================
+   Overlay + Drawer
+   ========================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+
+  background: rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.overlayOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(360px, 88vw);
+  z-index: 100;
+
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+
+  transform: translateX(110%);
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 22px;
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.drawerTitle {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.close {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  color: var(--text);
+
+  display: grid;
+  place-items: center;
+
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.close:hover {
+  transform: translateY(-1px);
+  border-color: rgba(14, 154, 167, 0.28);
+  background: rgba(14, 154, 167, 0.06);
+}
+
+.close:active {
+  transform: translateY(0);
+}
+
+.drawerNav {
+  padding-top: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.drawerNav a {
+  padding: 14px 12px;
+  border-radius: 14px;
+
+  font-size: 16px;
+  font-weight: 750;
+  color: var(--text);
+
+  border: 1px solid transparent;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.drawerNav a:hover {
+  background: rgba(14, 154, 167, 0.06);
+  border-color: rgba(14, 154, 167, 0.16);
+  transform: translateY(-1px);
+}
+
+.drawerCtas {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+
+  display: grid;
+  gap: 10px;
+}
+
+.drawerPrimary,
+.drawerSecondary {
+  width: 100%;
+  justify-content: center;
+}
+
+/* =========================
+   Actions secondaires (LISTE)
+   ========================= */
+
+.drawerDivider {
+  margin-top: 14px;
+  height: 1px;
+  background: var(--border);
+}
+
+.drawerRail {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.drawerIconBtn,
+.drawerThemeBtn {
+  width: min(300px, 100%);
+  justify-self: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.65);
+
+  color: rgba(0, 0, 0, 0.78);
+  font-weight: 750;
+
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.drawerIconBtn:hover,
+.drawerThemeBtn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(14, 154, 167, 0.22);
+  background: rgba(14, 154, 167, 0.06);
+}
+
+.drawerActionLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.drawerActionLabel {
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.drawerPill {
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* =========================
+   Breakpoints
+   ========================= */
+
+@media (min-width: 900px) {
+  .right {
     display: flex;
+  }
+  .burger {
+    display: none;
   }
 }
 
@@ -106,7 +364,6 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Refaire logo avec aweb en blanc et créer le switch de png sur le dark mode */
 :global(html[data-theme="dark"]) .logo {
   filter: brightness(2.5) contrast(1.05);
 }
@@ -126,8 +383,84 @@
 :global(html[data-theme="dark"]) .cta {
   color: rgba(255, 255, 255, 0.88);
   border: 1px solid rgba(14, 154, 167, 0.35);
+  background: rgba(20, 24, 28, 0.65);
 }
 
 :global(html[data-theme="dark"]) .cta:hover {
   background: rgba(14, 154, 167, 0.12);
+}
+
+:global(html[data-theme="dark"]) .burger {
+  color: rgba(255, 255, 255, 0.88);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+:global(html[data-theme="dark"]) .burger:hover {
+  border-color: rgba(14, 154, 167, 0.28);
+  background: rgba(14, 154, 167, 0.1);
+}
+
+:global(html[data-theme="dark"]) .overlay {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+:global(html[data-theme="dark"]) .drawer {
+  background: rgba(10, 14, 16, 0.94);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:global(html[data-theme="dark"]) .drawerTop {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:global(html[data-theme="dark"]) .drawerTitle {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+:global(html[data-theme="dark"]) .close {
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+:global(html[data-theme="dark"]) .close:hover {
+  border-color: rgba(14, 154, 167, 0.28);
+  background: rgba(14, 154, 167, 0.1);
+}
+
+:global(html[data-theme="dark"]) .drawerNav a {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+:global(html[data-theme="dark"]) .drawerNav a:hover {
+  background: rgba(14, 154, 167, 0.12);
+  border-color: rgba(14, 154, 167, 0.22);
+}
+
+:global(html[data-theme="dark"]) .drawerCtas {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:global(html[data-theme="dark"]) .drawerDivider {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* actions secondaires en dark */
+:global(html[data-theme="dark"]) .drawerIconBtn,
+:global(html[data-theme="dark"]) .drawerThemeBtn {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+:global(html[data-theme="dark"]) .drawerIconBtn:hover,
+:global(html[data-theme="dark"]) .drawerThemeBtn:hover {
+  border-color: rgba(14, 154, 167, 0.28);
+  background: rgba(14, 154, 167, 0.1);
+}
+
+:global(html[data-theme="dark"]) .drawerPill {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
 }
