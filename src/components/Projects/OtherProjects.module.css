@@ -57,7 +57,9 @@
   }
 }
 
-/* ----------------- Card ----------------- */
+/* =========================
+   CARD
+   ========================= */
 
 .card {
   background: var(--surface);
@@ -69,7 +71,9 @@
   display: flex;
   flex-direction: column;
 
-  transition: border-color 180ms ease, transform 180ms ease,
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease,
     box-shadow 180ms ease;
 }
 
@@ -219,7 +223,9 @@
   overflow: hidden;
   opacity: 0;
   transform: translateY(-6px);
-  transition: opacity 220ms ease, transform 220ms ease;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
 }
 
 .detailsOpen .detailsInner {

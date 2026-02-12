@@ -119,7 +119,7 @@ export default function Projects() {
             <span className={styles.rule} aria-hidden></span>
           </div>
           <p className={styles.lead}>
-            Des projets réalisés dans le cadre de ma formation et pour pratiquer
+            Des projets réalisés dans le cadre de ma formation pour pratiquer
             React et la qualité d’interface.
           </p>
         </div>

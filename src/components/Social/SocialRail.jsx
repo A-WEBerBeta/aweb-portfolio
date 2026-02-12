@@ -46,7 +46,7 @@ export default function SocialRail() {
         <Github size={18} strokeWidth={2} />
       </a>
 
-      {/* ✅ toggle partagé */}
+      {/* toggle partagé */}
       <ThemeToggle className={styles.iconBtn} />
 
       <span className={styles.line} aria-hidden="true" />

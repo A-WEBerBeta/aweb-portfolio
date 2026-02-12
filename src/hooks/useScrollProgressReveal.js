@@ -50,7 +50,7 @@ export default function useScrollProgressReveal({ preset = "focus" } = {}) {
       if (preset === "soft") {
         const visiblePx = Math.max(
           0,
-          Math.min(vh, rect.bottom) - Math.max(0, rect.top)
+          Math.min(vh, rect.bottom) - Math.max(0, rect.top),
         );
         const visibleRatio = rect.height > 0 ? visiblePx / rect.height : 0;
 
@@ -72,15 +72,15 @@ export default function useScrollProgressReveal({ preset = "focus" } = {}) {
       }
 
       // ===== FOCUS (projets): split gauche/droite/meta =====
-      const start = vh * 0.85;
-      const end = vh * 0.18;
+      const start = vh * 0.95;
+      const end = vh * 0.35;
 
       const raw = (start - rect.top) / (start - end);
       const p = clamp01(raw);
 
       el.style.setProperty("--p-left", range01(p, 0.0, 0.45).toFixed(4));
-      el.style.setProperty("--p-right", range01(p, 0.3, 0.75).toFixed(4));
-      el.style.setProperty("--p-meta", range01(p, 0.55, 1.0).toFixed(4));
+      el.style.setProperty("--p-right", range01(p, 0.25, 0.7).toFixed(4));
+      el.style.setProperty("--p-meta", range01(p, 0.45, 1.0).toFixed(4));
     };
 
     const schedule = () => {

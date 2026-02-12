@@ -1,13 +1,17 @@
-import { FaJsSquare, FaReact, FaUniversalAccess } from "react-icons/fa";
-import { SiCssmodules } from "react-icons/si";
-import portfolioImg from "../../assets/projects/portfolio.png";
+import { useMemo, useState } from "react";
 import useScrollProgressReveal from "../../hooks/useScrollProgressReveal";
 import Container from "../Container/Container";
 import styles from "./FeaturedProjects.module.css";
 
-export default function FeaturedProject() {
+import { projects } from "../../data/projectsFeatured";
+import VideoModal from "../VideoModal/VideoModal";
+import ProjectCard from "./ProjectCard";
+
+export default function FeaturedProjects() {
   const { ref: headerRef } = useScrollProgressReveal({ preset: "header" });
-  const { ref: gridRef } = useScrollProgressReveal({ preset: "focus" });
+
+  const [video, setVideo] = useState(null); // { title, url } | null
+  const items = useMemo(() => projects, []);
 
   return (
     <section id="projects" className={styles.section}>
@@ -19,62 +23,24 @@ export default function FeaturedProject() {
           </div>
         </div>
 
-        <div ref={gridRef} className={styles.grid}>
-          {/* VISUEL */}
-          <div className={styles.left}>
-            <div className={styles.shot}>
-              <img src={portfolioImg} alt="Aperçu du portfolio" />
-            </div>
-          </div>
-
-          {/* TEXTE */}
-          <div className={styles.right}>
-            <p className={styles.kicker}>Focus projet</p>
-
-            <h3 className={styles.title}>
-              Portfolio — UI sobre <br /> & responsive
-            </h3>
-
-            <div className={styles.stack}>
-              <div className={styles.tech}>
-                <div className={styles.techIcon} aria-hidden>
-                  <FaReact />
-                </div>
-                <div className={styles.techLabel}>React</div>
-              </div>
-
-              <div className={styles.tech}>
-                <div className={styles.techIcon} aria-hidden>
-                  <FaJsSquare />
-                </div>
-                <div className={styles.techLabel}>JavaScript</div>
-              </div>
-
-              <div className={styles.tech}>
-                <div className={styles.techIcon} aria-hidden>
-                  <SiCssmodules />
-                </div>
-                <div className={styles.techLabel}>CSS Modules</div>
-              </div>
-
-              <div className={styles.tech}>
-                <div className={styles.techIcon} aria-hidden>
-                  <FaUniversalAccess />
-                </div>
-                <div className={styles.techLabel}>Accessibilité</div>
-              </div>
-            </div>
-
-            <a
-              className={styles.cta}
-              href="https://aweb-portfolio.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Voir le projet
-            </a>
-          </div>
+        {/* IMPORTANT : PAS DE ref focus ICI */}
+        <div className={styles.list}>
+          {items.map((p, index) => (
+            <ProjectCard
+              key={p.id}
+              project={p}
+              reversed={index % 2 === 1}
+              onOpenDemo={(payload) => setVideo(payload)}
+            />
+          ))}
         </div>
+
+        <VideoModal
+          open={!!video}
+          onClose={() => setVideo(null)}
+          title={video?.title}
+          videoUrl={video?.url}
+        />
       </Container>
     </section>
   );
