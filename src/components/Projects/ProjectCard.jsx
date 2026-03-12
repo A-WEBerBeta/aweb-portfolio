@@ -1,12 +1,11 @@
 import {
   FaCss3,
   FaJsSquare,
-  FaPlay,
   FaReact,
   FaUniversalAccess,
   FaWordpress,
 } from "react-icons/fa";
-import { SiCssmodules, SiElementor } from "react-icons/si";
+import { SiCssmodules, SiElementor, SiTailwindcss } from "react-icons/si";
 import useScrollProgressReveal from "../../hooks/useScrollProgressReveal";
 import styles from "./FeaturedProjects.module.css";
 
@@ -15,13 +14,13 @@ const TECH = {
   js: { label: "JavaScript", Icon: FaJsSquare },
   cssmodules: { label: "CSS Modules", Icon: SiCssmodules },
   a11y: { label: "Accessibilité", Icon: FaUniversalAccess },
-
   wordpress: { label: "WordPress", Icon: FaWordpress },
   elementor: { label: "Elementor", Icon: SiElementor },
   css: { label: "CSS", Icon: FaCss3 },
+  tailwind: { label: "TailwindCss", Icon: SiTailwindcss },
 };
 
-export default function ProjectCard({ project, reversed, onOpenDemo }) {
+export default function ProjectCard({ project, reversed }) {
   // IMPORTANT : le preset focus doit être SUR CHAQUE CARD
   const { ref } = useScrollProgressReveal({ preset: "focus" });
 
@@ -73,34 +72,40 @@ export default function ProjectCard({ project, reversed, onOpenDemo }) {
         </div>
 
         <div className={styles.ctaRow}>
+          {/* PRIORITÉ : site live */}
           {project.links?.live && (
             <a
-              className={styles.cta}
+              className={styles.ctaPrimary}
               href={project.links.live}
               target="_blank"
               rel="noreferrer"
             >
-              Voir le code sur GitHub
+              Voir le projet
             </a>
           )}
 
-          {project.links?.demoVideo && (
-            <button
-              type="button"
-              className={styles.ctaBtn}
-              onClick={() =>
-                onOpenDemo({
-                  title: project.title.replaceAll("\n", " "),
-                  url: project.links.demoVideo,
-                })
-              }
+          {/* SI PAS DE LIVE → démo */}
+          {!project.links?.live && project.links?.demoVideo && (
+            <a
+              className={styles.ctaPrimary}
+              href={project.links.demoVideo}
+              target="_blank"
+              rel="noreferrer"
             >
-              <span className={styles.play}>
-                {" "}
-                <FaPlay />
-              </span>
-              Explorer le prototype
-            </button>
+              Voir la démo
+            </a>
+          )}
+
+          {/* CODE */}
+          {project.links?.repo && (
+            <a
+              className={styles.ctaSecondary}
+              href={project.links.repo}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Voir le code
+            </a>
           )}
         </div>
       </div>

@@ -1,5 +1,5 @@
 .section {
-  padding: 72px 0;
+  padding: 120px 0;
   background: transparent;
 }
 
@@ -10,7 +10,7 @@
 .header {
   display: grid;
   gap: 10px;
-  margin-bottom: 68px;
+  margin-bottom: 80px;
 
   --p: 0;
   opacity: var(--p);
@@ -53,7 +53,7 @@
 
 .list {
   display: grid;
-  gap: 84px;
+  gap: 120px;
 }
 
 /* =========================
@@ -240,11 +240,73 @@
    ========================= */
 
 .ctaRow {
-  margin-top: 8px;
   display: flex;
-  gap: 18px;
   flex-wrap: wrap;
+  gap: 22px;
   align-items: center;
+  margin-top: 18px;
+}
+
+/* Lien principal (Projet) */
+.ctaPrimary,
+.ctaSecondary {
+  position: relative;
+  padding: 6px 0;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: none;
+  transition: color 160ms ease;
+}
+
+.ctaPrimary {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ctaSecondary {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* underline teal */
+.ctaPrimary::after,
+.ctaSecondary::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: var(--teal);
+  transform: scaleX(0.35);
+  transform-origin: left;
+  opacity: 0.75;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+/* hover */
+.ctaPrimary:hover::after,
+.ctaSecondary:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* léger highlight */
+.ctaPrimary:hover {
+  color: #ffffff;
+}
+
+.ctaSecondary:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* accessibilité */
+.ctaPrimary:focus-visible,
+.ctaSecondary:focus-visible {
+  box-shadow: 0 0 0 3px rgba(14, 184, 167, 0.25);
+  border-radius: 8px;
 }
 
 .cta {
